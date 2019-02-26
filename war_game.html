@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Быки и коровы</title>
+</head>
+<body>
+	<script>
+		alert('Привет друг! Поиграем??? Игра называется "быки и коровы".');
+		
+		function getRandom() {
+  			return Math.floor(Math.random() * 9) + 1;
+		}
+
+
+		var num = [getRandom(), getRandom(), getRandom(), getRandom()];
+		console.log(num);
+
+		var check = function(user) {
+			let playerArray = [];
+			let playerArrElement;
+
+			for (let i = 0; i < 4; i++) {
+				playerArrElement = parseInt(user.substr(i, 1));
+				playerArray.push(playerArrElement);
+			}
+			let bulls = 0;
+			let cows = 0;
+			for (let i = 0; i < 4; i++) {
+				if (playerArray[i] === num[i]) {
+					bulls++;
+				} else if (num.indexOf(playerArray[i]) >= 0) {
+					cows++;
+				}
+			}
+
+			console.log(user);
+			console.log('быков: ' + bulls + ';' + ' коров: ' + cows);
+			alert('быков: ' + bulls + ';' + ' коров: ' + cows);
+			
+			if (bulls === 4) {
+				alert('Победа!!!!');
+			return true;				
+			}
+ 		};
+
+		var game = function () {
+			let counter = 0;
+			let end = false;
+			console.log('Игра началась!');
+
+			while (end != true) {
+				if (counter === 9) {
+					alert('Игра закончена! Не угадал! В следующий раз повезет!');
+					break;
+				} else {
+					let userNumber = prompt('Угадай четырехзначное число за 9 попыток, которое загадал компьютер');
+					counter++;
+					end = check(userNumber);
+				}
+			}
+		};
+
+		game();
+
+	</script>
+</body>
+</html>
